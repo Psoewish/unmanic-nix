@@ -52,9 +52,8 @@ services.unmanic = {
 
 This package follows the main Unmanic license, which is GPL-3.0. All the work, rights, credits, praise, etc. are given to the official Unmanic team. Here's a copy of the license agreement in the official Unmanic repository.
  
-Written by:               Psoewish
-
-Date:                     Sunday November 23 2025
+###### Written by: Psoewish
+###### Date: Sunday November 23 2025
  
 Copyright:
        Copyright (C) Josh Sunnex - All Rights Reserved
