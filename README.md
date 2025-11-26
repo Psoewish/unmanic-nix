@@ -42,7 +42,7 @@ Add this flake to your `flake.nix` inputs:
 services.unmanic = {
   enable = true;
   port = 8888;
-  dataDir = "/mnt/storage/unmanic";
+  dataDir = "/var/lib/unmanic";
   user = "unmanic";
   group = "unmanic";
 };
