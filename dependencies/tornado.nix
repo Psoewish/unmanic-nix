@@ -14,7 +14,7 @@ buildPythonPackage rec {
 
   src = fetchPypi {
     inherit pname version;
-    hash = "";
+    hash = "sha256-59jbQcAYHIDXbJgqrMRCwHg6LFTWQA/gKJVCAaLgMv4=";
   };
   meta = with lib; {
     description = "Python web framework and asynchronous networking library";
