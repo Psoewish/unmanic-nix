@@ -19,7 +19,7 @@ buildPythonPackage rec {
   meta = with lib; {
     description = "Python web framework and asynchronous networking library";
     homepage = "https://github.com/tornadoweb/tornado";
-    license = licenses.Apache-2;
+    license = licenses.asl20;
     maintainers = with maintainers; [ tornadoweb ];
   };
 }
