@@ -12,6 +12,7 @@ let
   buildPythonPackage = python312.pkgs.buildPythonPackage;
   json-log-formatter = pkgs.callPackage ./dependencies/json-log-formatter.nix { };
   peewee-migrate = pkgs.callPackage ./dependencies/peewee-migrate.nix { };
+  tornado = pkgs.callPackage ./dependencies/tornado.nix { };
 in
 buildPythonPackage rec {
   pname = "unmanic";
