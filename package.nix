@@ -59,6 +59,16 @@ buildPythonPackage rec {
     ffmpeg
   ];
 
+  patches = [
+    # Patch npm ci so that it uses an offline cache instead
+    # Not doing this will result in errors, as no network access is available during the build process
+    ./patches/use_npm_cache.patch
+
+    # Patch the setup to define a subprocess for shebang patching
+    # npm run needs this to function.
+    ./patches/patch_shebangs.patch
+  ];
+
   preBuild = ''
     # Initialize dummy git repository for automatic versioning
     git init
@@ -68,26 +78,8 @@ buildPythonPackage rec {
     git commit -m "Build version"
     git tag ${version}
 
-    # Set the frontend cache location, then copy files and build the frontend manually
+    # Set the frontend cache location, so our offline-build patch can use it
     export npm_config_cache=${npmDepsFrontend}
-    cp -r unmanic/webserver/frontend ./frontend_build
-    npm ci --offline --prefix ./frontend_build
-    patchShebangs ./frontend_build/node_modules/
-    npm run build:publish --prefix ./frontend_build
-
-    # Make sure the result from the frontend build is copied to the public directory
-    mkdir -p ./unmanic/webserver/public
-    cp -r ./frontend_build/dist/spa/* ./unmanic/webserver/public/
-    echo "checking public directory post-copy"
-
-    # Skip the python script's frontend build, since we're already building it manually
-    sed -i "s/self.run_command('build-frontend')/# self.run_command('build-frontend')/" setup.py
-  '';
-
-  postInstall = ''
-    # Make sure all the frontend files are in the correct final store location
-    mkdir -p $out/lib/python3.12/site-packages/unmanic/webserver/public
-    cp -r ./unmanic/webserver/public/* $out/lib/python3.12/site-packages/unmanic/webserver/public/ || true
   '';
 
   meta = with lib; {

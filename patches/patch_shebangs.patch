@@ -1,0 +1,10 @@
+--- a/setup.py
++++ b/setup.py
+@@ -121,0 +121,7 @@ class BuildFrontendCommand(setuptools.command.build_py.build_py):
++        # Patch shebangs for Nix
++        subprocess.run(
++            "bash -c 'source $stdenv/setup && patchShebangs node_modules'",
++            check=True,
++            shell=True,
++            cwd=frontend_path,
++        )
