@@ -8,13 +8,7 @@
   nodejs,
   git,
 }:
-let
-  buildPythonPackage = python312.pkgs.buildPythonPackage;
-  json-log-formatter = pkgs.callPackage ./dependencies/json-log-formatter.nix { };
-  peewee-migrate = pkgs.callPackage ./dependencies/peewee-migrate.nix { };
-  tornado = pkgs.callPackage ./dependencies/tornado.nix { };
-in
-buildPythonPackage rec {
+python312.pkgs.buildPythonPackage rec {
   pname = "unmanic";
   version = "0.3.0";
   format = "setuptools";
@@ -39,7 +33,7 @@ buildPythonPackage rec {
     git
   ];
 
-  propagatedBuildInputs = with python312.pkgs; [
+  propagatedBuildInputs = with pkgs.callPackage ./dependencies.nix { }; [
     schedule
     tornado
     marshmallow
@@ -52,7 +46,7 @@ buildPythonPackage rec {
     watchdog
     inquirer
     swagger-ui-py
-    json-log-formatter
+    JSON-log-formatter
   ];
 
   dependencies = [
