@@ -52,6 +52,7 @@ services.unmanic = {
   user = "unmanic";
   group = "unmanic";
   extraGroups = [ "video" "render" ];
+  openFirewall = false;
 };
 ```
 

@@ -50,6 +50,12 @@ in
       ];
       description = "Additional groups under which Unmanic will run (useful for hardware access)";
     };
+
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Open ports in the firwall for Unmanic";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -85,6 +91,10 @@ in
         PrivateTmp = true;
         ProtectHome = true;
       };
+    };
+
+    networking.firewall = lib.mkIf cfg.openFirewall {
+      allowedTCPPorts = [ cfg.port ];
     };
   };
 }
