@@ -41,17 +41,22 @@ in
       default = "unmanic";
       description = "The group under which Unmanic will run.";
     };
+
+    extraGroups = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [
+        "video"
+        "render"
+      ];
+      description = "Additional groups under which Unmanic will run (useful for hardware access)";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     users.users.${cfg.user} = {
+      inherit (cfg) group extraGroups;
       isSystemUser = true;
-      group = cfg.group;
       home = cfg.dataDir;
-      extraGroups = [
-        "video"
-        "render"
-      ];
     };
 
     users.groups.${cfg.group} = { };
