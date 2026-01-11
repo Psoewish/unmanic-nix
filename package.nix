@@ -33,12 +33,12 @@ python312.pkgs.buildPythonPackage rec {
     git
   ];
 
-  propagatedBuildInputs = with pkgs.callPackage ./dependencies.nix { }; [
+  propagatedBuildInputs = with python312.pkgs; [
     schedule
-    tornado
+    (pkgs.callPackage ./dependencies/tornado.nix { })
     marshmallow
     peewee
-    peewee-migrate
+    (pkgs.callPackage ./dependencies/peewee-migrate.nix { })
     psutil
     requests
     requests-toolbelt
@@ -46,7 +46,7 @@ python312.pkgs.buildPythonPackage rec {
     watchdog
     inquirer
     swagger-ui-py
-    JSON-log-formatter
+    (pkgs.callPackage ./dependencies/json-log-formatter.nix { })
   ];
 
   dependencies = [
