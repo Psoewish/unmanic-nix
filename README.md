@@ -1,3 +1,7 @@
+# Notice
+A new version is now out, so I'll update this flake soon. Going forward I think I'll create a new branch for each version (in case you want to easily track an older version), while main will always be the latest version.
+No ETA on when I'll update this, but should be within a week as of writing this (feb 27)
+
 # Unmanic for NixOS
 
 A Nix flake providing [Unmanic](https://github.com/Unmanic/unmanic), a library
