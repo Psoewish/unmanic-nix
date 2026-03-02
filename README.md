@@ -1,6 +1,5 @@
 # Notice
-A new version is now out, so I'll update this flake soon. Going forward I think I'll create a new branch for each version (in case you want to easily track an older version), while main will always be the latest version.
-No ETA on when I'll update this, but should be within a week as of writing this (feb 27)
+A new version is now out, I'm currently working on updating this flake, however 0.4.0 seems to have brought quite a few changes that make it harder than just updating some versions/hashes, and I'll have to debug the install script again lol. I'll try to get this working ASAP but for now 0.3.0 still works perfectly fine. Apologies for the delay if anyone actually uses (and reads) this.
 
 # Unmanic for NixOS
 
